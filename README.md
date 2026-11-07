@@ -104,6 +104,20 @@ touches your credentials.
 **Nothing invents a number.** If a skill wants a figure it does not have, it asks you for it or
 writes the line without it.
 
+## Working on this repo
+
+`skills/` and `templates/` are the source. This repo also carries project-local copies in
+`.claude/skills/` and `.claude/youtube/voice.md` so the skills load when you open it in Claude Code.
+After editing a skill, bring the copies back in line:
+
+```bash
+python3 scripts/sync_claude.py           # copy changes, remove deleted files
+python3 scripts/sync_claude.py --check   # report only; exits 1 if out of sync
+```
+
+It only touches `yt-*` folders. `voice.md` is created when missing but never overwritten, because
+you fill it in; `--voice` resets it to the template.
+
 ## Licence
 
 MIT. Use it, change it, ship it.
